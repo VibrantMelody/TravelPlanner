@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                 x:Class="TravelPlanner.View.AddTripsPopup">
+
+    <Frame CornerRadius="15" Margin="10" BackgroundColor="White" HasShadow="True">
+        <ScrollView>
+            <StackLayout Padding="10">
+                <Label x:Name="PopupTitle"
+                       FontFamily="PoppinsSemi" 
+                       FontSize="24" 
+                       TextColor="#007ACC"
+                       HorizontalOptions="Center"
+                       Margin="0,0,0,0"/>
+
+                <!-- Trip Image Preview -->
+                <Frame CornerRadius="10" 
+                       IsClippedToBounds="True" 
+                       Padding="0" 
+                       HeightRequest="200"
+                       Margin="0,0,0,20">
+                    <ff:CachedImage x:Name="TripImage"
+                                  Source="https://images.unsplash.com/photo-1532339142463-fd0a8979791a?q=80&amp;w=2070&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                  LoadingPlaceholder="loading_placeholder"
+                                  ErrorPlaceholder="error_placeholder"
+                                  Aspect="AspectFill"/>
+                </Frame>
+
+                <Label Text="Trip Name" FontFamily="Poppins"/>
+                <Entry x:Name="TripNameEntry" 
+                       Placeholder="Enter trip name"
+                       FontFamily="Poppins"/>
+
+                <Label Text="Location" FontFamily="Poppins"/>
+                <Entry x:Name="TripLocationEntry" 
+                       Placeholder="Enter location"
+                       FontFamily="Poppins"/>
+
+                <Label Text="Description" FontFamily="Poppins"/>
+                <Entry x:Name="TripDescriptionEntry" 
+                        Placeholder="Enter description"
+                        FontFamily="Poppins"/>
+
+                <Label Text="Start Date" FontFamily="Poppins"/>
+                <DatePicker x:Name="StartDateDatePicker"
+                           FontFamily="Poppins"/>
+
+                <Label Text="End Date" FontFamily="Poppins"/>
+                <DatePicker x:Name="EndDateDatePicker"
+                           FontFamily="Poppins"/>
+
+                <Label Text="Image URL" FontFamily="Poppins"/>
+                <Entry x:Name="ImageEntry" 
+                       Placeholder="Enter image URL"
+                       TextChanged="OnImageUrlChanged"
+                       FontFamily="Poppins"/>
+
+                <StackLayout Orientation="Horizontal" 
+                           Spacing="10" 
+                           HorizontalOptions="Center"
+                           Margin="0,20,0,0">
+                    <Button x:Name="SaveButton"
+                            BackgroundColor="#007ACC"
+                            TextColor="White"
+                            CornerRadius="20"
+                            HeightRequest="45"
+                            WidthRequest="120"
+                            FontFamily="PoppinsSemi"
+                            Clicked="SaveButtonClicked"/>
+
+                    <Button Text="Cancel"
+                            BackgroundColor="#dc3545"
+                            TextColor="White"
+                            CornerRadius="20"
+                            HeightRequest="45"
+                            WidthRequest="120"
+                            FontFamily="PoppinsSemi"
+                            Clicked="CancelButtonClicked"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </Frame>
+</pages:PopupPage>

@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TravelPlanner.ViewModel"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
+             xmlns:converter="clr-namespace:TravelPlanner.Converter"
+             x:Class="TravelPlanner.View.HomePage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:DateConverter x:Key="DateConverter" />
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout Padding="20" x:Name="MainStackLayout">
+            <FlexLayout Direction="Row" JustifyContent="SpaceBetween" AlignItems="Center" Margin="0,0,0,20">
+                <ff:CachedImage Source="logo.png" />
+                <StackLayout Orientation="Horizontal" Spacing="10">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="LogoutClicked" />
+                    </StackLayout.GestureRecognizers>
+                    <Label Text="arrow-right-from-bracket" FontFamily="FASolid" TextColor="DarkRed" FontSize="Medium" VerticalTextAlignment="Center"/>
+                    <Label Text="Logout" FontSize="Body" FontFamily="PoppinsSemi" TextColor="DarkRed"/>
+                </StackLayout>
+            </FlexLayout>
+
+            <Frame CornerRadius="15" Padding="0" Margin="0">
+                <RelativeLayout HeightRequest="100">
+                    <ff:CachedImage
+                        DownsampleToViewSize="True"
+                        LoadingPlaceholder="loading_placeholder.png"
+                        ErrorPlaceholder="error_placeholder.png"
+                        FadeAnimationEnabled="True"
+                        CacheDuration="30" 
+                        Source="adventure.jpeg"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+                        Aspect="AspectFill"/>
+                        <FlexLayout Direction="row" JustifyContent="SpaceBetween" Padding="10">
+                            <Label FontFamily="PoppinsSemi" FontSize="Medium"  TextColor="White" HorizontalTextAlignment="Start">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Welcome " />
+                                        <Span Text="{Binding CurrentUser.FullName}" TextColor="yellow" FontFamily="PoppinsSemi" FontSize="Large"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Button Text="pen-to-square" FontFamily="FARegular" FontSize="Medium" HeightRequest="40" BackgroundColor="White" CornerRadius="20" HorizontalOptions="EndAndExpand" Clicked="EditProfileClicked"/>
+                        </FlexLayout>
+                </RelativeLayout>
+            </Frame>
+
+            <FlexLayout JustifyContent="SpaceBetween" AlignItems="Center" Margin="10">
+                <Label Text="Upcoming Trips" TextColor="black" FontSize="Body" FontFamily="PoppinsSemi" />
+                <StackLayout Orientation="Horizontal" Spacing="10">
+                <Label TextColor="DarkBlue" FontSize="Body" FontFamily="PoppinsSemi">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="plus" FontFamily="FASolid"/>
+                            <Span Text="  Create New Trip"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="CreateTripClicked" />
+                    </Label.GestureRecognizers>
+                </Label>
+                    <Label Text="arrows-rotate" FontFamily="FASolid"  TextColor="DarkBlue" FontSize="Medium" VerticalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="RefreshTripsClicked" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+            </FlexLayout>
+
+            <CollectionView ItemsSource="{Binding TripsList}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="20" Orientation="Vertical" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Grid.Row="0" Margin="0" Padding="0" BorderColor="#282828" IsClippedToBounds="True" CornerRadius="15" HasShadow="True">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="FrameCardTapped" />
+                            </Frame.GestureRecognizers>
+                            <Grid Padding="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="0.5*" />
+                                    <RowDefinition Height="0.5*" />
+                                </Grid.RowDefinitions>
+                                <ff:CachedImage Grid.Row="0" Source="{Binding Image}" 
+                                    Aspect="AspectFill" 
+                                    HeightRequest="100"/>
+                                <StackLayout Grid.Row="1" Orientation="Vertical" HorizontalOptions="Center" Spacing="0" Padding="10">
+                                    <Label Text="{Binding TripName}" FontSize="18" FontFamily="PoppinsBold" HorizontalTextAlignment="Center"/>
+                                    <Label Text="{Binding Location}" FontFamily="PoppinsSemi" />
+                                    <Label Text="{Binding Description}" />
+                                    <FlexLayout JustifyContent="SpaceAround">
+                                        <Label Text="{Binding StartDate, Converter={StaticResource DateConverter}}"/>
+                                        <Label Text="Calendar" FontFamily="FASolid"/>
+                                        <Label Text="{Binding EndDate, Converter={StaticResource DateConverter}}"/>
+                                    </FlexLayout>
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

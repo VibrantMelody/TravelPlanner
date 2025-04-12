@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TravelPlanner.View.LoginPage"
+             BackgroundColor="#F7F9FC">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="FontFamily" Value="Poppins"/>
+                <Setter Property="TextColor" Value="#333333"/>
+            </Style>
+            <Style x:Key="EntryFrameStyle" TargetType="Frame">
+                <Setter Property="CornerRadius" Value="12"/>
+                <Setter Property="Padding" Value="15,0"/>
+                <Setter Property="HasShadow" Value="False"/>
+                <Setter Property="BorderColor" Value="#E0E0E0"/>
+                <Setter Property="HeightRequest" Value="50"/>
+                <Setter Property="Margin" Value="0,3,0,6"/>
+            </Style>
+            <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#1b354b"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="CornerRadius" Value="25"/>
+                <Setter Property="HeightRequest" Value="50"/>
+                <Setter Property="FontFamily" Value="PoppinsSemi"/>
+                <Setter Property="FontSize" Value="16"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid Padding="30">
+            <BoxView BackgroundColor="#1b354b" HeightRequest="220" VerticalOptions="Start" Opacity="0.05"/>
+            
+            <ScrollView>
+                <StackLayout Padding="20,15" Spacing="15">
+                    <Image Source="signInBackground.png" HeightRequest="180" Aspect="AspectFit" Margin="0,5,0,5"/>
+                    
+                    <StackLayout Spacing="2" Margin="0,0,0,2">
+                        <Label FontSize="24" FontFamily="PoppinsBold" TextColor="#1b354b">Welcome Back</Label>
+                        <Label FontSize="14" TextColor="#666666">Please sign in to continue your journey</Label>
+                    </StackLayout>
+                    
+                    <StackLayout Spacing="2">
+                        <Label Text="Email" FontFamily="PoppinsSemi" FontSize="14" Margin="5,0,0,0"/>
+                        <Frame Style="{StaticResource EntryFrameStyle}">
+                                <Entry x:Name="EmailEntry" 
+                                       Grid.Column="1"
+                                       Placeholder="Enter your email" 
+                                       PlaceholderColor="#AAAAAA"
+                                       FontFamily="Poppins"
+                                       ClearButtonVisibility="WhileEditing"
+                                       Keyboard="Email"
+                                       VerticalOptions="Center"/>
+                        </Frame>
+                        
+                        <Label Text="Password" FontFamily="PoppinsSemi" FontSize="14" Margin="5,0,0,0"/>
+                        <Frame Style="{StaticResource EntryFrameStyle}">
+                                <Entry x:Name="PasswordEntry" 
+                                       Grid.Column="1"
+                                       Placeholder="Enter your password" 
+                                       PlaceholderColor="#AAAAAA"
+                                       FontFamily="Poppins"
+                                       IsPassword="True"
+                                       ClearButtonVisibility="WhileEditing"
+                                       VerticalOptions="Center"/>
+                        </Frame>
+                        
+                        <Label Text="Forgot Password?" 
+                               TextColor="#1b354b"
+                               FontFamily="PoppinsSemi"
+                               FontSize="14"
+                               HorizontalOptions="End"
+                               Margin="0,0,5,0">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="ResetPasswordClicked"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                    
+                    <Frame BackgroundColor="#F0F4F9" 
+                           CornerRadius="12" 
+                           HasShadow="False" 
+                           Padding="10">
+                        <StackLayout>
+                            <Label Text="Select Account Type" 
+                                   FontFamily="PoppinsSemi" 
+                                   FontSize="14" 
+                                   Margin="0,0,0,5"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <Frame Grid.Column="0" 
+                                       BackgroundColor="White" 
+                                       CornerRadius="8" 
+                                       HasShadow="False" 
+                                       Padding="10"
+                                       Margin="0,0,5,0">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <RadioButton x:Name="RBAdmin" 
+                                        GroupName="AccountType"
+                                                     Grid.Column="0"
+                                                     VerticalOptions="Center"/>
+                                        <Label Grid.Column="1" 
+                                               Text="Admin" 
+                                               FontSize="15" 
+                                               VerticalOptions="Center"/>
+                                    </Grid>
+                                </Frame>
+                                
+                                <Frame Grid.Column="1" 
+                                       BackgroundColor="White" 
+                                       CornerRadius="8" 
+                                       HasShadow="False" 
+                                       Padding="10"
+                                       Margin="5,0,0,0">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <RadioButton x:Name="RBUser" 
+                                        GroupName="AccountType"
+                                                     Grid.Column="0"
+                                                     VerticalOptions="Center"
+                                                     IsChecked="True"/>
+                                        <Label Grid.Column="1" 
+                                               Text="User" 
+                                               FontSize="15" 
+                                               VerticalOptions="Center"/>
+                                    </Grid>
+                                </Frame>
+                            </Grid>
+                        </StackLayout>
+                    </Frame>
+                    
+                    <Button Text="Sign In" 
+                            Style="{StaticResource PrimaryButtonStyle}"
+                            Clicked="SignInButtonClicked" 
+                            Margin="0,5"/>
+                    
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="5">
+                        <Label Text="Don't have an account?" TextColor="#666666" FontSize="15"/>
+                        <Label Text="Sign Up" 
+                               TextColor="#1b354b" 
+                               FontFamily="PoppinsSemi"
+                               FontSize="15">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnSignUpTapped"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

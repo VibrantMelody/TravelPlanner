@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                 x:Class="TravelPlanner.View.AdminPopup.StatisticsPopupPage">
+
+    <Frame CornerRadius="15" Margin="10" Padding="0" BackgroundColor="White" HasShadow="True">
+        <ScrollView>
+            <StackLayout Padding="20">
+                <Label Text="Statistics and Reports" 
+                       FontFamily="PoppinsSemi" 
+                       FontSize="Large" 
+                       TextColor="#007ACC"
+                       HorizontalOptions="Center"
+                       Margin="0,0,0,5"/>
+
+                <!-- Users Statistics -->
+                <Frame BorderColor="#e0e0e0" 
+                       Padding="15" 
+                       Margin="0,0,0,5"
+                       CornerRadius="10">
+                    <StackLayout>
+                        <Label Text="Users Statistics"
+                                HorizontalTextAlignment="Center"
+                               FontFamily="PoppinsSemi"
+                               FontSize="18"
+                               TextColor="#007ACC"/>
+                        
+                        <BoxView HeightRequest="1" 
+                                BackgroundColor="#e0e0e0" 
+                                Margin="0,5,0,5"/>
+
+                        <Grid ColumnSpacing="5" RowSpacing="5" HorizontalOptions="Center">
+                            <Grid.Resources>
+                                <Style TargetType="Label">
+                                    <Setter Property="HorizontalOptions" Value="Center" />
+                                </Style>
+                            </Grid.Resources>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackLayout Grid.Column="0">
+                                <Label Text="Total Users"
+                                       FontFamily="Poppins"
+                                       FontSize="14"
+                                       TextColor="Gray"/>
+                                <Label Text="{Binding TotalUsers}"
+                                       FontFamily="PoppinsSemi"
+                                       FontSize="24"/>
+                            </StackLayout>
+
+                            <StackLayout Grid.Column="1">
+                                <Label Text="Admin Users"
+                                       FontFamily="Poppins"
+                                       FontSize="14"
+                                       TextColor="Gray"/>
+                                <Label Text="{Binding AdminUsers}"
+                                       FontFamily="PoppinsSemi"
+                                       FontSize="24"/>
+                            </StackLayout>
+
+                            <StackLayout Grid.Row="1" Grid.Column="0">
+                                <Label Text="New Users (30d)"
+                                       FontFamily="Poppins"
+                                       FontSize="14"
+                                       TextColor="Gray"/>
+                                <Label Text="{Binding NewUsers}"
+                                       FontFamily="PoppinsSemi"
+                                       FontSize="24"/>
+                            </StackLayout>
+
+                            <StackLayout Grid.Row="1" Grid.Column="1">
+                                <Label Text="Active Users"
+                                       FontFamily="Poppins"
+                                       FontSize="14"
+                                       TextColor="Gray"/>
+                                <Label Text="{Binding ActiveUsers}"
+                                       FontFamily="PoppinsSemi"
+                                       FontSize="24"/>
+                            </StackLayout>
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+
+                <!-- Trips Statistics -->
+                <Frame BorderColor="#e0e0e0" 
+                       Padding="15" 
+                       Margin="0,0,0,5"
+                       CornerRadius="10">
+                    <StackLayout>
+                        <Label Text="Trips Statistics"
+                                HorizontalTextAlignment="Center"
+                               FontFamily="PoppinsSemi"
+                               FontSize="18"
+                               TextColor="#28a745"/>
+                        
+                        <BoxView HeightRequest="1" 
+                                BackgroundColor="#e0e0e0" 
+                                Margin="0,5,0,5"/>
+
+                        <Grid ColumnSpacing="5" RowSpacing="5">
+                            <Grid.Resources>
+                                <Style TargetType="Label">
+                                    <Setter Property="HorizontalOptions" Value="Center" />
+                                </Style>
+                            </Grid.Resources>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackLayout Grid.Column="0">
+                                <Label Text="Total Trips"
+                                       FontFamily="Poppins"
+                                       FontSize="14"
+                                       TextColor="Gray"/>
+                                <Label Text="{Binding TotalTrips}"
+                                       FontFamily="PoppinsSemi"
+                                       FontSize="24"/>
+                            </StackLayout>
+
+                            <StackLayout Grid.Column="1">
+                                <Label Text="Active Trips"
+                                       FontFamily="Poppins"
+                                       FontSize="14"
+                                       TextColor="Gray"/>
+                                <Label Text="{Binding ActiveTrips}"
+                                       FontFamily="PoppinsSemi"
+                                       FontSize="24"/>
+                            </StackLayout>
+
+                            <StackLayout Grid.Row="1" Grid.Column="0">
+                                <Label Text="Upcoming Trips"
+                                       FontFamily="Poppins"
+                                       FontSize="14"
+                                       TextColor="Gray"/>
+                                <Label Text="{Binding UpcomingTrips}"
+                                       FontFamily="PoppinsSemi"
+                                       FontSize="24"/>
+                            </StackLayout>
+
+                            <StackLayout Grid.Row="1" Grid.Column="1">
+                                <Label Text="Completed Trips"
+                                       FontFamily="Poppins"
+                                       FontSize="14"
+                                       TextColor="Gray"/>
+                                <Label Text="{Binding CompletedTrips}"
+                                       FontFamily="PoppinsSemi"
+                                       FontSize="24"/>
+                            </StackLayout>
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+
+                <!-- Export Options -->
+                <Frame BorderColor="#e0e0e0" 
+                       Padding="15" 
+                       Margin="0,0,0,5"
+                       CornerRadius="10">
+                    <StackLayout>
+                        <Label Text="Export Data"
+                               HorizontalTextAlignment="Center"
+                               FontFamily="PoppinsSemi"
+                               FontSize="18"
+                               TextColor="#6c757d"/>
+                        
+                        <BoxView HeightRequest="1" 
+                                BackgroundColor="#e0e0e0" 
+                                Margin="0,5,0,10"/>
+
+                        <StackLayout Orientation="Horizontal" 
+                                   Spacing="10" 
+                                   HorizontalOptions="Center">
+                            <Button Text="Export Users"
+                                    BackgroundColor="#007ACC"
+                                    TextColor="White"
+                                    WidthRequest="140"
+                                    CornerRadius="20"
+                                    Clicked="OnExportUsersClicked"/>
+
+                            <Button Text="Export Trips"
+                                    BackgroundColor="#28a745"
+                                    TextColor="White"
+                                    WidthRequest="140"
+                                    CornerRadius="20"
+                                    Clicked="OnExportTripsClicked"/>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+
+                <!-- Close Button -->
+                <Button Text="Close"
+                        BackgroundColor="#dc3545"
+                        TextColor="White"
+                        CornerRadius="20"
+                        HeightRequest="45"
+                        WidthRequest="120"
+                        Margin="0,10,0,10"
+                        HorizontalOptions="Center"
+                        Clicked="OnCloseClicked"/>
+            </StackLayout>
+        </ScrollView>
+    </Frame>
+</pages:PopupPage>

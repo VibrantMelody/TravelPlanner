@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TravelPlanner.MainPage">
+
+    <ContentPage.Resources>
+        <StyleSheet Source="Styles/style.css" />
+    </ContentPage.Resources>
+
+    <FlexLayout Margin="10,20" BackgroundColor="white" Direction="Column" JustifyContent="center" AlignItems="Center">
+        <Image Source="logo.png" HeightRequest="150" Opacity="0" x:Name="SplashLogo"></Image>
+    </FlexLayout>
+
+</ContentPage>

@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TravelPlanner.View.SignUpPage"
+             BackgroundColor="#f0f4f8">
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontFamily" Value="Poppins"/>
+            <Setter Property="TextColor" Value="#333"/>
+        </Style>
+        <Style TargetType="Entry">
+            <Setter Property="FontSize" Value="Body" />
+            <Setter Property="TextColor" Value="#333"/>
+            <Setter Property="BackgroundColor" Value="White"/>
+            <Setter Property="PlaceholderColor" Value="#aaa"/>
+            <Setter Property="Margin" Value="0,5"/>
+        </Style>
+        <Style TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#1b354b"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="CornerRadius" Value="25"/>
+                <Setter Property="HeightRequest" Value="50"/>
+                <Setter Property="FontFamily" Value="PoppinsSemi"/>
+                <Setter Property="FontSize" Value="16"/>
+        </Style>
+        <Style TargetType="RadioButton">
+            <Setter Property="FontFamily" Value="Poppins"/>
+            <Setter Property="TextColor" Value="#555"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="40" Spacing="30" VerticalOptions="Center">
+                <Image Source="signUpBackground.png" HeightRequest="150" Aspect="AspectFit"></Image>
+                <StackLayout Spacing="10">
+                    <Label FontSize="Title" FontFamily="PoppinsBold" TextColor="#2c3e50" HorizontalTextAlignment="Center">Create Account</Label>
+                    <Label FontSize="Subtitle" TextColor="#7f8c8d" HorizontalTextAlignment="Center">Please enter your details to sign up.</Label>
+                </StackLayout>
+
+                <StackLayout Spacing="0">
+                    <StackLayout Orientation="Horizontal" Spacing="10">
+                        <Entry x:Name="FullNameEntry" Placeholder="Full Name" HorizontalOptions="FillAndExpand" ClearButtonVisibility="WhileEditing"></Entry>
+                        <Entry x:Name="UserNameEntry" Placeholder="User Name" HorizontalOptions="FillAndExpand" ClearButtonVisibility="WhileEditing"></Entry>
+                    </StackLayout>
+                    <Entry x:Name="EmailEntry" Placeholder="Email" Keyboard="Email" ClearButtonVisibility="WhileEditing"></Entry>
+                    <Entry x:Name="PasswordEntry" Placeholder="Password (8+ characters)" IsPassword="True" ClearButtonVisibility="WhileEditing"></Entry>
+                    <Entry x:Name="ReTypePasswordEntry" Placeholder="Re-enter Password" IsPassword="True" ClearButtonVisibility="WhileEditing"></Entry>
+                </StackLayout>
+
+                    <Frame BackgroundColor="#F0F4F9" 
+                           CornerRadius="12" 
+                           HasShadow="False" 
+                           Padding="10">
+                        <StackLayout>
+                            <Label Text="Select Account Type" 
+                                   FontFamily="PoppinsSemi" 
+                                   FontSize="14" 
+                                   Margin="0,0,0,5"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <Frame Grid.Column="0" 
+                                       BackgroundColor="White" 
+                                       CornerRadius="8" 
+                                       HasShadow="False" 
+                                       Padding="10"
+                                       Margin="0,0,5,0">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <RadioButton x:Name="RBAdmin" 
+                                        GroupName="AccountType"
+                                                     Grid.Column="0"
+                                                     VerticalOptions="Center"/>
+                                        <Label Grid.Column="1" 
+                                               Text="Admin" 
+                                               FontSize="15" 
+                                               VerticalOptions="Center"/>
+                                    </Grid>
+                                </Frame>
+                                
+                                <Frame Grid.Column="1" 
+                                       BackgroundColor="White" 
+                                       CornerRadius="8" 
+                                       HasShadow="False" 
+                                       Padding="10"
+                                       Margin="5,0,0,0">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <RadioButton x:Name="RBUser" 
+                                        GroupName="AccountType"
+                                                     Grid.Column="0"
+                                                     VerticalOptions="Center"
+                                                     IsChecked="True"/>
+                                        <Label Grid.Column="1" 
+                                               Text="User" 
+                                               FontSize="15" 
+                                               VerticalOptions="Center"/>
+                                    </Grid>
+                                </Frame>
+                            </Grid>
+                        </StackLayout>
+                    </Frame>
+
+                <Button Text="Sign Up" Clicked="SignUpButtonClicked"></Button>
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                    <Label TextColor="#555" Text="Already have an account? "/>
+                    <Label TextColor="#007bff" TextDecorations="Underline" Text="Log In">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnSignInTapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

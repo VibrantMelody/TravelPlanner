@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                 BackgroundColor="Transparent"
+                 x:Class="TravelPlanner.View.AdminPopup.UserManagementPopup">
+
+    <Frame CornerRadius="20" 
+           Margin="15" 
+           BackgroundColor="White" 
+           HasShadow="True"
+           Padding="20">
+        <StackLayout Spacing="15">
+            <!-- Header with Title and Action Buttons -->
+            <StackLayout Orientation="Horizontal">
+                <StackLayout Orientation="Horizontal" Spacing="10" HorizontalOptions="StartAndExpand">
+                    <Label Text="&#xf2c2;" 
+                           FontFamily="FASolid" 
+                           FontSize="24"
+                           VerticalOptions="Center"
+                           TextColor="#007ACC" />
+                    <Label Text="User Management"
+                           FontFamily="PoppinsSemi"
+                           FontSize="Medium"
+                           VerticalOptions="Center"
+                           TextColor="#333333"
+                           />
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Spacing="10">
+                    <Button Text="&#xf2ed;"
+                            FontFamily="FASolid"
+                            Clicked="OnBulkDeleteClicked"
+                            BackgroundColor="#f8f9fa"
+                            TextColor="#dc3545"
+                            CornerRadius="12"
+                            HeightRequest="44"
+                            WidthRequest="44"
+                            FontSize="18"/>
+                    <Button Text="&#xf067;"
+                            FontFamily="FASolid"
+                            Clicked="OnAddUserClicked"
+                            BackgroundColor="#f8f9fa"
+                            TextColor="#28a745"
+                            CornerRadius="12"
+                            HeightRequest="44"
+                            WidthRequest="44"
+                            FontSize="18"/>
+                </StackLayout>
+            </StackLayout>
+
+            <!-- Search and Filter -->
+            <Frame BackgroundColor="#f8f9fa" 
+                   CornerRadius="15" 
+                   Padding="5" 
+                   HasShadow="False">
+                <Grid ColumnSpacing="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <SearchBar Grid.Column="0"
+                               x:Name="SearchBar"
+                               Placeholder="Search users..."
+                               TextChanged="OnSearchTextChanged"
+                               BackgroundColor="Transparent"
+                               PlaceholderColor="#adb5bd"
+                               CancelButtonColor="#007ACC"
+                               HorizontalOptions="FillAndExpand"/>
+                    
+                    <Frame Grid.Column="1" 
+                           BackgroundColor="White" 
+                           CornerRadius="10" 
+                           Padding="5,0" 
+                           HasShadow="False">
+                        <Picker FontSize="Small"
+                                x:Name="RoleFilter"
+                                Title="Role"
+                                TextColor="#495057"
+                                TitleColor="#6c757d"
+                                SelectedIndexChanged="OnRoleFilterChanged">
+                            <Picker.Items>
+                                <x:String>All</x:String>
+                                <x:String>Admin</x:String>
+                                <x:String>User</x:String>
+                            </Picker.Items>
+                        </Picker>
+                    </Frame>
+                </Grid>
+            </Frame>
+
+            <!-- Users List -->
+            <Frame CornerRadius="15" 
+                   Background="white" 
+                   HasShadow="False" 
+                   Padding="10" >
+                <CollectionView x:Name="UsersCollection"
+                                SelectionMode="Multiple" >
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <SwipeView>
+                                <SwipeView.RightItems>
+                                    <SwipeItems>
+                                        <SwipeItem Text="Edit"
+                                                   IconImageSource="&#xf044;"
+                                                   BackgroundColor="#007ACC"
+                                                   Invoked="EditUserClicked"/>
+                                        <SwipeItem Text="Delete"
+                                                   IconImageSource="&#xf1f8;"
+                                                   BackgroundColor="#dc3545"
+                                                   Invoked="DeleteUserClicked"/>
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+                                <Grid Padding="15" ColumnSpacing="15" BackgroundColor="white">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                        <ff:CachedImage Source="{Binding User.ProfilePicture}"
+                                                        LoadingPlaceholder="loading_placeholder"
+                                                        ErrorPlaceholder="error_placeholder"
+                                                        Aspect="AspectFill" 
+                                                        HeightRequest="50"
+                                                        WidthRequest="50"
+                                                        />
+
+                                    <StackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                                        <Label Text="{Binding User.FullName}"
+                                               FontFamily="PoppinsSemi"
+                                               FontSize="16"
+                                               TextColor="#212529"/>
+                                        <Label Text="{Binding User.Email}"
+                                               FontSize="13"
+                                               TextColor="#6c757d"/>
+                                        <Frame BackgroundColor="#e3f2fd" 
+                                               CornerRadius="10" 
+                                               Padding="5,2" 
+                                               HasShadow="False"
+                                               HorizontalOptions="Start">
+                                            <Label Text="{Binding User.Role}"
+                                                   FontSize="11"
+                                                   TextColor="#007ACC"
+                                                   FontFamily="PoppinsSemi"/>
+                                        </Frame>
+                                    </StackLayout>
+
+                                    <CheckBox Grid.Column="2"
+                                              IsChecked="{Binding IsSelected, Mode=TwoWay}"
+                                              Color="#007ACC"
+                                              VerticalOptions="Center" />
+                                </Grid>
+                            </SwipeView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <CollectionView.EmptyView>
+                        <StackLayout VerticalOptions="CenterAndExpand" Padding="20">
+                            <Label Text="&#xf7d5;"
+                                   FontFamily="FASolid"
+                                   FontSize="48"
+                                   HorizontalOptions="Center"
+                                   TextColor="#adb5bd"/>
+                            <Label Text="No users found"
+                                   FontFamily="PoppinsSemi"
+                                   FontSize="18"
+                                   HorizontalOptions="Center"
+                                   TextColor="#6c757d"/>
+                            <Label Text="Try adjusting your search or filters"
+                                   FontSize="14"
+                                   HorizontalOptions="Center"
+                                   TextColor="#adb5bd"/>
+                        </StackLayout>
+                    </CollectionView.EmptyView>
+                </CollectionView>
+            </Frame>
+
+            <!-- Footer -->
+            <Button Text="Close"
+                    BackgroundColor="#c72323"
+                    TextColor="white"
+                    CornerRadius="12"
+                    Clicked="OnCloseClicked"
+                    WidthRequest="120"
+                    FontFamily="PoppinsSemi"
+                    HorizontalOptions="Center"
+                    HeightRequest="44"/>
+        </StackLayout>
+    </Frame>
+</pages:PopupPage>

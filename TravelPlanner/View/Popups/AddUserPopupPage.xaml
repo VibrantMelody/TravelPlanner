@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                 x:Class="TravelPlanner.View.Popups.AddUserPopupPage">
+    <pages:PopupPage.Resources>
+        <Style TargetType="Entry">
+            <Setter Property="FontFamily" Value="Poppins"/>
+            <Setter Property="FontSize" Value="Small" />
+            <Setter Property="TextColor" Value="#333333"/>
+            <Setter Property="BackgroundColor" Value="White"/>
+            <Setter Property="HeightRequest" Value="45"/>
+            <Setter Property="PlaceholderColor" Value="#999999"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="FontFamily" Value="PoppinsSemi"/>
+            <Setter Property="FontSize" Value="Medium" />
+            <Setter Property="TextColor" Value="#333333"/>
+        </Style>
+    </pages:PopupPage.Resources>
+
+    <Frame CornerRadius="15" Margin="20" BackgroundColor="White" HasShadow="True">
+        <StackLayout Padding="20">
+            <Label Text="Add New User" 
+                   FontFamily="PoppinsSemi" 
+                   FontSize="24" 
+                   TextColor="#007ACC"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,20"/>
+
+            <!-- Profile Picture Preview -->
+            <Frame CornerRadius="75" 
+                   IsClippedToBounds="True" 
+                   Padding="0" 
+                   HeightRequest="150" 
+                   WidthRequest="150"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,20">
+                <ff:CachedImage x:Name="ProfileImage"
+                               Source="user_placeholder"
+                               LoadingPlaceholder="loading_placeholder"
+                               ErrorPlaceholder="user_placeholder"
+                               Aspect="AspectFill"/>
+            </Frame>
+
+            <Label Text="Username" FontFamily="Poppins"/>
+            <Entry x:Name="UserNameEntry" 
+                   Placeholder="Enter username"
+                   FontFamily="Poppins"/>
+
+            <Label Text="Full Name" FontFamily="Poppins"/>
+            <Entry x:Name="FullNameEntry" 
+                   Placeholder="Enter full name"
+                   FontFamily="Poppins"/>
+
+            <Label Text="Email" FontFamily="Poppins"/>
+            <Entry x:Name="EmailEntry" 
+                   Placeholder="Enter email"
+                   Keyboard="Email"
+                   FontFamily="Poppins"/>
+
+            <Label Text="Password" FontFamily="Poppins"/>
+            <Entry x:Name="PasswordEntry" 
+                   Placeholder="Enter password"
+                   IsPassword="True"
+                   FontFamily="Poppins"/>
+
+            <Label Text="Profile Picture URL" FontFamily="Poppins"/>
+            <Entry x:Name="ImageEntry" 
+                   Placeholder="Enter profile picture URL"
+                   TextChanged="OnImageUrlChanged"
+                   FontFamily="Poppins"/>
+
+            <Label Text="Role" FontFamily="Poppins"/>
+            <Picker x:Name="RolePicker"
+                    FontFamily="Poppins">
+                <Picker.Items>
+                    <x:String>User</x:String>
+                    <x:String>Admin</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <StackLayout Orientation="Horizontal" 
+                        Spacing="10" 
+                        HorizontalOptions="Center"
+                        Margin="0,20,0,0">
+                <Button Text="Save"
+                        BackgroundColor="#007ACC"
+                        TextColor="White"
+                        CornerRadius="20"
+                        HeightRequest="45"
+                        WidthRequest="120"
+                        FontFamily="PoppinsSemi"
+                        Clicked="OnSaveClicked"/>
+
+                <Button Text="Cancel"
+                        BackgroundColor="#dc3545"
+                        TextColor="White"
+                        CornerRadius="20"
+                        HeightRequest="45"
+                        WidthRequest="120"
+                        FontFamily="PoppinsSemi"
+                        Clicked="OnCancelClicked"/>
+            </StackLayout>
+        </StackLayout>
+    </Frame>
+</pages:PopupPage>

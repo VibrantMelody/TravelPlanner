@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TravelPlanner.ViewModel"
+             xmlns:converter="clr-namespace:TravelPlanner.Converter" 
+             x:DataType="local:TripDetailViewModel"
+             xmlns:model="clr-namespace:TravelPlanner.Model" 
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             x:Class="TravelPlanner.View.TripsDetailPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:DateConverter x:Key="DateConverter" />
+            <Style TargetType="Label">
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <Frame Margin="0" Padding="0" IsClippedToBounds="True" CornerRadius="15" HasShadow="False" BorderColor="#282828">
+                <StackLayout>
+                    <ff:CachedImage Source="{Binding Trip.Image}" HeightRequest="200" 
+                             Aspect="AspectFill" />
+                    <StackLayout Orientation="Vertical" Spacing="5" HorizontalOptions="Center" Padding="30,10,30,10" >
+                        <Label FontSize="Medium" FontFamily="PoppinsSemi" Text="{Binding Trip.TripName}"/>
+                        <Label Text="{Binding Trip.Location}" FontSize="Body" FontFamily="PoppinsSemi" />
+                        <Label Text="{Binding Trip.Description}" />
+                        <StackLayout Orientation="Horizontal" Spacing="20" HorizontalOptions="Center">
+                            <Label Text="{Binding Trip.StartDate, Converter={StaticResource DateConverter}}"/>
+                            <Label Text="Calendar" FontFamily="FASolid" VerticalTextAlignment="Center"/>
+                            <Label Text="{Binding Trip.EndDate, Converter={StaticResource DateConverter}}"/>
+                        </StackLayout>
+                        <Button Text="Join Trip" x:Name="JoinTripButton" Background="black" TextColor="White" CornerRadius="20" Padding="0" Margin="0" BorderWidth="0" HeightRequest="40" Clicked="JoinTripClicked"/>
+                        <StackLayout Orientation="Horizontal" Spacing="10" HorizontalOptions="Center">
+                        <Button Text="Delete Trip" x:Name="DeleteTripButton" Background="#c72323" TextColor="White" CornerRadius="20" Padding="0" Margin="0" BorderWidth="0" WidthRequest="120" HeightRequest="40" Clicked="DeleteTripClicked"/>
+                        <Button Text="Edit Trip" x:Name="EditTripButton" Background="#225ad5" TextColor="White" CornerRadius="20" Padding="0" Margin="0" BorderWidth="0" WidthRequest="120" HeightRequest="40" Clicked="EditTripClicked"/>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+
+            <Frame CornerRadius="15" BorderColor="black">
+                <CollectionView ItemsSource="{Binding TripUsers}">
+                    <CollectionView.Header>
+                        <Label Text="Travellers" FontSize="Medium" FontFamily="PoppinsSemi" Margin="0" Padding="0"/>
+                    </CollectionView.Header>
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:TripUsers">
+                            <StackLayout Orientation="Horizontal" Padding="10,0,10,0" Spacing="20" >
+                                <ff:CachedImage Source="{Binding ProfilePicture}" DownsampleToViewSize="True" HeightRequest="40" WidthRequest="40" Aspect="AspectFill">
+                                    <ff:CachedImage.Transformations>
+                                        <fftransformations:CircleTransformation />
+                                    </ff:CachedImage.Transformations>
+                                </ff:CachedImage>
+                                <StackLayout Spacing="0">
+                                    <Label Text="{Binding UserName}" FontSize="Caption" HorizontalTextAlignment="Start" />
+                                    <Label Text="{Binding FullName}" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="ShowUserInfo"/>
+                                    </StackLayout.GestureRecognizers>
+                                    <Label Text="info" FontFamily="FASolid" FontSize="Body" TextColor="#14204a"/>
+                                    <Label Text="info" TextColor="#14204a" FontSize="Small" />
+                                </StackLayout>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

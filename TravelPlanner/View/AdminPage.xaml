@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Class="TravelPlanner.View.AdminPage"
+             BackgroundColor="#f5f5f5">
+
+    <ContentPage.Resources>
+        <Style TargetType="Frame">
+            <Setter Property="CornerRadius" Value="15"/>
+            <Setter Property="HasShadow" Value="True"/>
+            <Setter Property="BackgroundColor" Value="White"/>
+            <Setter Property="Margin" Value="0,0,0,15"/>
+            <Setter Property="Padding" Value="20"/>
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="CornerRadius" Value="20"/>
+            <Setter Property="HeightRequest" Value="45"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="FontFamily" Value="PoppinsSemi"/>
+        </Style>
+
+        <Style TargetType="Label">
+            <Setter Property="FontFamily" Value="Poppins"/>
+            <Setter Property="TextColor" Value="#333333"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <StackLayout Padding="20">
+            <!-- App Logo -->
+            <ff:CachedImage 
+                Source="logo.png"
+                HeightRequest="100"
+                Aspect="AspectFit"
+                Margin="0,20,0,20"
+                HorizontalOptions="Center"/>
+
+            <!-- Header -->
+            <Label Text="Admin Dashboard" 
+                   FontFamily="PoppinsSemi"
+                   FontSize="24" 
+                   TextColor="#007ACC"
+                   HorizontalOptions="Center" 
+                   Margin="0,0,0,20"/>
+
+            <!-- Users Management Section -->
+            <Frame>
+                <StackLayout>
+                    <Label Text="Users Management" 
+                           FontFamily="PoppinsSemi"
+                           FontSize="18" 
+                           TextColor="#007ACC"/>
+
+                    <BoxView HeightRequest="1" 
+                            BackgroundColor="#e0e0e0" 
+                            Margin="0,5,0,10"/>
+
+                    <StackLayout Spacing="10">
+                        <Button Text="Manage Users" 
+                                BackgroundColor="#007ACC" 
+                                Clicked="UsersClicked"
+                                />
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+
+            <!-- Trips Management Section -->
+            <Frame>
+                <StackLayout>
+                    <Label Text="Trips Management" 
+                           FontFamily="PoppinsSemi"
+                           FontSize="18" 
+                           TextColor="#007ACC"/>
+
+                    <BoxView HeightRequest="1" 
+                            BackgroundColor="#e0e0e0" 
+                            Margin="0,5,0,10"/>
+
+                    <StackLayout Spacing="10">
+                        <Button Text="Manage Trips" 
+                                BackgroundColor="#28a745" 
+                                Clicked="TripsClicked"
+                                />
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+
+            <!-- Analytics Section -->
+            <Frame>
+                <StackLayout>
+                    <Label Text="Analytics" 
+                           FontFamily="PoppinsSemi"
+                           FontSize="18" 
+                           TextColor="#007ACC"/>
+
+                    <BoxView HeightRequest="1" 
+                            BackgroundColor="#e0e0e0" 
+                            Margin="0,5,0,10"/>
+
+                    <StackLayout Spacing="10">
+                        <Button Text="Statistics and Report" 
+                                BackgroundColor="#6c757d" 
+                                Clicked="StatisticsClicked"
+                                />
+
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+
+            <!-- Logout Section -->
+            <Frame BackgroundColor="#fff5f5">
+                <StackLayout>
+                    <Label Text="Admin Session" 
+                           FontFamily="PoppinsSemi"
+                           FontSize="18" 
+                           TextColor="#dc3545"/>
+
+                    <BoxView HeightRequest="1" 
+                            BackgroundColor="#ffebeb" 
+                            Margin="0,5,0,10"/>
+
+                    <Button Text="Logout" 
+                            BackgroundColor="#dc3545" 
+                            Clicked="LogoutClicked"
+                            />
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
